@@ -69,7 +69,7 @@ def findLocation(bigSpace, font, level =0, directory = "C:\\Users"):
                     bigSpace.fill((0,255,0))
                     bigSpace.blit((font.render(directory, True, (0,0,0))), (0,50))
                 if event.key == pygame.K_f:
-                    dFile = open("savedLocation.txt", "a")
+                    dFile = open("savedLocation.txt", "w")
                     dFile.write(directory)
                     dFile.close()
                     firsts(directory)
@@ -168,6 +168,7 @@ def displaylyrics( lyrics,bigSpace):
 def running(songs,bigSpace,n, font, directory):
     playing = open(directory + "\\"+ songs[n], 'r')
     chords = playing.readlines()
+    
     lyrics = []
     a = 0
     for x in chords:
@@ -175,10 +176,10 @@ def running(songs,bigSpace,n, font, directory):
             lyrics.append([font.render(x[:-1], True, (0,0,0)), (0,50*a+bigSpace.get_height())])
         a +=1
     x =0    #top line being shown
-    display = bigSpace.get_height() //4
+   # display = bigSpace.get_height() //4
     waitTime = 700
     while lyrics[len(lyrics)-1][1] != (0,0):
-            displaylyrics(lyrics, bigSpace, )
+            displaylyrics(lyrics, bigSpace)
             for event in pygame.event.get():
                     #if the event is to quit
                     if event.type == pygame.QUIT:
@@ -186,13 +187,13 @@ def running(songs,bigSpace,n, font, directory):
                         pygame.display.quit()
                         sys.exit()
                         playing.close()
-                    if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_UP:
-                            waitTime -=10
-                        if event.key == pygame.K_DOWN:
-                            waitTime +=10
-            pygame.time.wait(waitTime)
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        for s in range(5):
+                            pygame.time.wait(500)
+            X,mousePos = pygame.mouse.get_pos()
+            waitTime = mousePos*2
             x +=1
+            pygame.time.wait(waitTime)
     start(bigSpace, font, songs, directory)
 bigSpace, font,songs, directory = firsts()
 start(bigSpace, font, songs, directory)
