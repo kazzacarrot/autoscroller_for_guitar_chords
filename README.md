@@ -1,3 +1,4 @@
+There are like 3 parts to this: file exploration, song choosing and song play. 
 Instructions:
 
 You will soon see a crude file explorer. Use the left and right arrow keys to navigate and the return key to enter a directory. You can go up a level (return to the previous folder) by pressing the up arrow key. Choose the correct folder by pressing f.
